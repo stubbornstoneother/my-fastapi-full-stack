@@ -16,7 +16,11 @@ import { Route as LoginRouteImport } from './routes/login'
 import { Route as LayoutRouteImport } from './routes/_layout'
 import { Route as LayoutIndexRouteImport } from './routes/_layout/index'
 import { Route as LayoutSettingsRouteImport } from './routes/_layout/settings'
-import { Route as LayoutItemsRouteImport } from './routes/_layout/items'
+import { Route as LayoutRobotsRouteImport } from './routes/_layout/robots'
+import { Route as LayoutPersonsRouteImport } from './routes/_layout/persons'
+import { Route as LayoutOrganizationsRouteImport } from './routes/_layout/organizations'
+import { Route as LayoutLogsRouteImport } from './routes/_layout/logs'
+import { Route as LayoutDictionariesRouteImport } from './routes/_layout/dictionaries'
 import { Route as LayoutAdminRouteImport } from './routes/_layout/admin'
 
 const SignupRoute = SignupRouteImport.update({
@@ -53,9 +57,29 @@ const LayoutSettingsRoute = LayoutSettingsRouteImport.update({
   path: '/settings',
   getParentRoute: () => LayoutRoute,
 } as any)
-const LayoutItemsRoute = LayoutItemsRouteImport.update({
-  id: '/items',
-  path: '/items',
+const LayoutRobotsRoute = LayoutRobotsRouteImport.update({
+  id: '/robots',
+  path: '/robots',
+  getParentRoute: () => LayoutRoute,
+} as any)
+const LayoutPersonsRoute = LayoutPersonsRouteImport.update({
+  id: '/persons',
+  path: '/persons',
+  getParentRoute: () => LayoutRoute,
+} as any)
+const LayoutOrganizationsRoute = LayoutOrganizationsRouteImport.update({
+  id: '/organizations',
+  path: '/organizations',
+  getParentRoute: () => LayoutRoute,
+} as any)
+const LayoutLogsRoute = LayoutLogsRouteImport.update({
+  id: '/logs',
+  path: '/logs',
+  getParentRoute: () => LayoutRoute,
+} as any)
+const LayoutDictionariesRoute = LayoutDictionariesRouteImport.update({
+  id: '/dictionaries',
+  path: '/dictionaries',
   getParentRoute: () => LayoutRoute,
 } as any)
 const LayoutAdminRoute = LayoutAdminRouteImport.update({
@@ -65,14 +89,18 @@ const LayoutAdminRoute = LayoutAdminRouteImport.update({
 } as any)
 
 export interface FileRoutesByFullPath {
+  '/': typeof LayoutIndexRoute
   '/login': typeof LoginRoute
   '/recover-password': typeof RecoverPasswordRoute
   '/reset-password': typeof ResetPasswordRoute
   '/signup': typeof SignupRoute
   '/admin': typeof LayoutAdminRoute
-  '/items': typeof LayoutItemsRoute
+  '/dictionaries': typeof LayoutDictionariesRoute
+  '/logs': typeof LayoutLogsRoute
+  '/organizations': typeof LayoutOrganizationsRoute
+  '/persons': typeof LayoutPersonsRoute
+  '/robots': typeof LayoutRobotsRoute
   '/settings': typeof LayoutSettingsRoute
-  '/': typeof LayoutIndexRoute
 }
 export interface FileRoutesByTo {
   '/login': typeof LoginRoute
@@ -80,7 +108,11 @@ export interface FileRoutesByTo {
   '/reset-password': typeof ResetPasswordRoute
   '/signup': typeof SignupRoute
   '/admin': typeof LayoutAdminRoute
-  '/items': typeof LayoutItemsRoute
+  '/dictionaries': typeof LayoutDictionariesRoute
+  '/logs': typeof LayoutLogsRoute
+  '/organizations': typeof LayoutOrganizationsRoute
+  '/persons': typeof LayoutPersonsRoute
+  '/robots': typeof LayoutRobotsRoute
   '/settings': typeof LayoutSettingsRoute
   '/': typeof LayoutIndexRoute
 }
@@ -92,21 +124,29 @@ export interface FileRoutesById {
   '/reset-password': typeof ResetPasswordRoute
   '/signup': typeof SignupRoute
   '/_layout/admin': typeof LayoutAdminRoute
-  '/_layout/items': typeof LayoutItemsRoute
+  '/_layout/dictionaries': typeof LayoutDictionariesRoute
+  '/_layout/logs': typeof LayoutLogsRoute
+  '/_layout/organizations': typeof LayoutOrganizationsRoute
+  '/_layout/persons': typeof LayoutPersonsRoute
+  '/_layout/robots': typeof LayoutRobotsRoute
   '/_layout/settings': typeof LayoutSettingsRoute
   '/_layout/': typeof LayoutIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
+    | '/'
     | '/login'
     | '/recover-password'
     | '/reset-password'
     | '/signup'
     | '/admin'
-    | '/items'
+    | '/dictionaries'
+    | '/logs'
+    | '/organizations'
+    | '/persons'
+    | '/robots'
     | '/settings'
-    | '/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/login'
@@ -114,7 +154,11 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/signup'
     | '/admin'
-    | '/items'
+    | '/dictionaries'
+    | '/logs'
+    | '/organizations'
+    | '/persons'
+    | '/robots'
     | '/settings'
     | '/'
   id:
@@ -125,7 +169,11 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/signup'
     | '/_layout/admin'
-    | '/_layout/items'
+    | '/_layout/dictionaries'
+    | '/_layout/logs'
+    | '/_layout/organizations'
+    | '/_layout/persons'
+    | '/_layout/robots'
     | '/_layout/settings'
     | '/_layout/'
   fileRoutesById: FileRoutesById
@@ -171,7 +219,7 @@ declare module '@tanstack/react-router' {
     '/_layout': {
       id: '/_layout'
       path: ''
-      fullPath: ''
+      fullPath: '/'
       preLoaderRoute: typeof LayoutRouteImport
       parentRoute: typeof rootRouteImport
     }
@@ -189,11 +237,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LayoutSettingsRouteImport
       parentRoute: typeof LayoutRoute
     }
-    '/_layout/items': {
-      id: '/_layout/items'
-      path: '/items'
-      fullPath: '/items'
-      preLoaderRoute: typeof LayoutItemsRouteImport
+    '/_layout/robots': {
+      id: '/_layout/robots'
+      path: '/robots'
+      fullPath: '/robots'
+      preLoaderRoute: typeof LayoutRobotsRouteImport
+      parentRoute: typeof LayoutRoute
+    }
+    '/_layout/persons': {
+      id: '/_layout/persons'
+      path: '/persons'
+      fullPath: '/persons'
+      preLoaderRoute: typeof LayoutPersonsRouteImport
+      parentRoute: typeof LayoutRoute
+    }
+    '/_layout/organizations': {
+      id: '/_layout/organizations'
+      path: '/organizations'
+      fullPath: '/organizations'
+      preLoaderRoute: typeof LayoutOrganizationsRouteImport
+      parentRoute: typeof LayoutRoute
+    }
+    '/_layout/logs': {
+      id: '/_layout/logs'
+      path: '/logs'
+      fullPath: '/logs'
+      preLoaderRoute: typeof LayoutLogsRouteImport
+      parentRoute: typeof LayoutRoute
+    }
+    '/_layout/dictionaries': {
+      id: '/_layout/dictionaries'
+      path: '/dictionaries'
+      fullPath: '/dictionaries'
+      preLoaderRoute: typeof LayoutDictionariesRouteImport
       parentRoute: typeof LayoutRoute
     }
     '/_layout/admin': {
@@ -208,14 +284,22 @@ declare module '@tanstack/react-router' {
 
 interface LayoutRouteChildren {
   LayoutAdminRoute: typeof LayoutAdminRoute
-  LayoutItemsRoute: typeof LayoutItemsRoute
+  LayoutDictionariesRoute: typeof LayoutDictionariesRoute
+  LayoutLogsRoute: typeof LayoutLogsRoute
+  LayoutOrganizationsRoute: typeof LayoutOrganizationsRoute
+  LayoutPersonsRoute: typeof LayoutPersonsRoute
+  LayoutRobotsRoute: typeof LayoutRobotsRoute
   LayoutSettingsRoute: typeof LayoutSettingsRoute
   LayoutIndexRoute: typeof LayoutIndexRoute
 }
 
 const LayoutRouteChildren: LayoutRouteChildren = {
   LayoutAdminRoute: LayoutAdminRoute,
-  LayoutItemsRoute: LayoutItemsRoute,
+  LayoutDictionariesRoute: LayoutDictionariesRoute,
+  LayoutLogsRoute: LayoutLogsRoute,
+  LayoutOrganizationsRoute: LayoutOrganizationsRoute,
+  LayoutPersonsRoute: LayoutPersonsRoute,
+  LayoutRobotsRoute: LayoutRobotsRoute,
   LayoutSettingsRoute: LayoutSettingsRoute,
   LayoutIndexRoute: LayoutIndexRoute,
 }

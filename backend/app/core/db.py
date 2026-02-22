@@ -3,6 +3,7 @@ from sqlmodel import Session, create_engine, select
 from app import crud
 from app.core.config import settings
 from app.models import User, UserCreate
+from app.models_system import DictItem, DictType
 
 engine = create_engine(str(settings.SQLALCHEMY_DATABASE_URI))
 
@@ -31,3 +32,70 @@ def init_db(session: Session) -> None:
             is_superuser=True,
         )
         user = crud.create_user(session=session, user_create=user_in)
+
+    # Initialize default dictionary data
+    _init_dict_data(session)
+
+
+def _init_dict_data(session: Session) -> None:
+    """Initialize default dictionary types and items."""
+    default_dicts = {
+        "person_category": {
+            "name": "人员类别",
+            "items": [
+                ("一类人员", "1"),
+                ("二类人员", "2"),
+                ("三类人员", "3"),
+                ("四类人员", "4"),
+            ],
+        },
+        "difficulty": {
+            "name": "考核难度",
+            "items": [
+                ("困难", "1"),
+                ("一般", "2"),
+                ("简单", "3"),
+            ],
+        },
+        "gender": {
+            "name": "性别",
+            "items": [
+                ("男", "男"),
+                ("女", "女"),
+            ],
+        },
+        "is_reference": {
+            "name": "是否参考",
+            "items": [
+                ("是", "是"),
+                ("否", "否"),
+            ],
+        },
+        "disease": {
+            "name": "伤病",
+            "items": [
+                ("是", "是"),
+                ("否", "否"),
+            ],
+        },
+    }
+
+    for code, data in default_dicts.items():
+        existing = session.exec(
+            select(DictType).where(DictType.code == code)
+        ).first()
+        if not existing:
+            dt = DictType(name=data["name"], code=code)
+            session.add(dt)
+            session.commit()
+            session.refresh(dt)
+
+            for i, (label, value) in enumerate(data["items"]):
+                item = DictItem(
+                    label=label,
+                    value=value,
+                    sort_order=i,
+                    dict_type_id=dt.id,
+                )
+                session.add(item)
+            session.commit()
