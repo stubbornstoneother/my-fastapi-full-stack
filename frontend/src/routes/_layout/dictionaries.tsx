@@ -82,7 +82,7 @@ function DictionariesPage() {
                     </div>
                     <div>
                         <h1 className="text-2xl font-bold tracking-widest text-foreground">
-                            数据字典体系
+                            数据字典
                         </h1>
                         <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mt-1">
                             常量注册中心 // <span className="text-secondary">{types.length} 个基类</span>

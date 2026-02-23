@@ -171,7 +171,7 @@ function RobotsPage() {
                     </div>
                     <div>
                         <h1 className="text-2xl font-bold tracking-[0.1em] text-foreground">
-                            战备执勤序列
+                            设备列表
                         </h1>
                         <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mt-1">
                             编配总数: <span className="text-foreground">{robots.length}</span> // 在线节点: <span className="text-primary">{onlineCount}</span> // 执行任务: <span className="text-amber-500">{examCount}</span>

@@ -47,10 +47,10 @@ function Dashboard() {
   const recentLogs = logsData?.data ?? []
 
   const stats = [
-    { title: "列装装备总数", value: robots.length, icon: Bot, color: "text-primary", bg: "bg-primary/10", border: "border-primary/20", line: "border-l-primary" },
-    { title: "通信在线连接", value: onlineRobots.length, icon: Wifi, color: "text-emerald-500", bg: "bg-emerald-500/10", border: "border-emerald-500/20", line: "border-l-emerald-500" },
-    { title: "实兵演训执行中", value: examRobots.length, icon: Activity, color: "text-amber-500", bg: "bg-amber-500/10", border: "border-amber-500/20", line: "border-l-amber-500" },
-    { title: "在编参训人员", value: totalPersons, icon: Users, color: "text-secondary", bg: "bg-secondary/10", border: "border-secondary/20", line: "border-l-secondary" },
+    { title: "设备总数", value: robots.length, icon: Bot, color: "text-primary", bg: "bg-primary/10", border: "border-primary/20", line: "border-l-primary" },
+    { title: "在线总数", value: onlineRobots.length, icon: Wifi, color: "text-emerald-500", bg: "bg-emerald-500/10", border: "border-emerald-500/20", line: "border-l-emerald-500" },
+    { title: "使用中设备", value: examRobots.length, icon: Activity, color: "text-amber-500", bg: "bg-amber-500/10", border: "border-amber-500/20", line: "border-l-amber-500" },
+    { title: "人员总数", value: totalPersons, icon: Users, color: "text-secondary", bg: "bg-secondary/10", border: "border-secondary/20", line: "border-l-secondary" },
   ]
 
   return (
@@ -65,7 +65,7 @@ function Dashboard() {
           <Terminal className="size-6 text-primary" />
         </div>
         <div>
-          <h1 className="text-2xl font-bold tracking-widest text-foreground">协同指挥控制中心</h1>
+          <h1 className="text-2xl font-bold tracking-widest text-foreground">控制中心</h1>
           <p className="text-muted-foreground font-mono text-[10px] tracking-widest mt-1 opacity-80">SYS.STATUS: ONLINE // UPTIME: OK</p>
         </div>
       </motion.div>
@@ -98,7 +98,7 @@ function Dashboard() {
             <CardHeader className="flex flex-row items-center justify-between pb-2 border-b border-border/50 bg-primary/5">
               <CardTitle className="text-sm font-bold tracking-widest flex items-center gap-2">
                 <div className="w-1.5 h-4 bg-primary" />
-                战备执勤序列
+                设备列表
                 <span className="font-mono text-[10px] text-muted-foreground/60 font-normal ml-2">ACTIVE_UNITS</span>
               </CardTitle>
               <Link to="/robots"><Button variant="ghost" size="sm" className="font-mono text-xs text-primary hover:bg-primary/10 hover:text-primary rounded-none h-7">查看全部 <ArrowRight className="ml-1 size-3" /></Button></Link>
@@ -142,7 +142,7 @@ function Dashboard() {
             <CardHeader className="flex flex-row items-center justify-between pb-2 border-b border-border/50 bg-secondary/5">
               <CardTitle className="text-sm font-bold tracking-widest flex items-center gap-2">
                 <div className="w-1.5 h-4 bg-secondary" />
-                系统活动日志
+                系统日志
                 <span className="font-mono text-[10px] text-muted-foreground/60 font-normal ml-2">SYS_LOGS</span>
               </CardTitle>
               <Link to="/logs"><Button variant="ghost" size="sm" className="font-mono text-xs text-secondary hover:bg-secondary/10 hover:text-secondary rounded-none h-7">查看日志 <ArrowRight className="ml-1 size-3" /></Button></Link>
@@ -181,9 +181,9 @@ function Dashboard() {
       {/* Quick Links */}
       <motion.div variants={itemVariants as any} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {[
-          { title: "装备管理", desc: "管控与指令下发", icon: Bot, to: "/robots" },
-          { title: "人员档案", desc: "编制与受训记录", icon: Users, to: "/persons" },
-          { title: "部队架构", desc: "组织层级与驻地", icon: Building2, to: "/organizations" },
+          { title: "设备管理", desc: "管控与指令下发", icon: Bot, to: "/robots" },
+          { title: "人员管理", desc: "编制与受训记录", icon: Users, to: "/persons" },
+          { title: "组织架构", desc: "组织层级与驻地", icon: Building2, to: "/organizations" },
           { title: "系统字典", desc: "核心参数配置", icon: BookOpen, to: "/dictionaries" },
         ].map((link) => (
           <Link key={link.to} to={link.to}>

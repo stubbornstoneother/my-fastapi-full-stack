@@ -13,9 +13,9 @@ import { User } from "./User"
 
 const baseItems: Item[] = [
   { icon: Home, title: "控制中心", path: "/" },
-  { icon: Bot, title: "装备管理", path: "/robots" },
-  { icon: Users, title: "人员档案", path: "/persons" },
-  { icon: Building2, title: "部队架构", path: "/organizations" },
+  { icon: Bot, title: "设备管理", path: "/robots" },
+  { icon: Users, title: "人员管理", path: "/persons" },
+  { icon: Building2, title: "组织架构", path: "/organizations" },
   { icon: BookOpen, title: "系统字典", path: "/dictionaries" },
   { icon: ScrollText, title: "系统日志", path: "/logs" },
 ]
@@ -24,7 +24,7 @@ export function AppSidebar() {
   const { user: currentUser } = useAuth()
 
   const items = currentUser?.is_superuser
-    ? [...baseItems, { icon: UserCog, title: "ADMIN", path: "/admin" }]
+    ? [...baseItems, { icon: UserCog, title: "用户管理", path: "/admin" }]
     : baseItems
 
   return (
@@ -35,7 +35,7 @@ export function AppSidebar() {
             <Terminal className="size-6 text-primary" />
           </div>
           <div className="flex flex-col group-data-[collapsible=icon]:hidden">
-            <span className="font-bold text-lg tracking-widest text-foreground">协同指挥平台</span>
+            <span className="font-bold text-lg tracking-widest text-foreground">体训数据管理平台</span>
             <span className="font-mono text-[9px] text-muted-foreground tracking-widest uppercase">v3.0.0 // TACTICAL-CORE</span>
           </div>
         </div>

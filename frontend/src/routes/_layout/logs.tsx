@@ -52,7 +52,7 @@ function LogsPage() {
                     </div>
                     <div>
                         <h1 className="text-2xl font-bold tracking-widest text-foreground">
-                            系统事件日志
+                            系统日志
                         </h1>
                         <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mt-1">
                             事件总记录数: <span className="text-secondary">{total}</span> // 实时监控信道已建立

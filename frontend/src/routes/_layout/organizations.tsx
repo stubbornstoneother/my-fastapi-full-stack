@@ -243,7 +243,7 @@ function OrganizationsPage() {
           </div>
           <div>
             <h1 className="text-2xl font-bold tracking-widest text-foreground">
-              组织层级结构
+              组织架构
             </h1>
             <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mt-1">
               根节点数量: <span className="text-secondary">{tree.length}</span>
